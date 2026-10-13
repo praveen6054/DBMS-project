@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ title or "JurisDesk | Legal Operations" }}</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head>
+<body><div class="shell"><aside class="sidebar"><div class="brand"><div class="brand-icon">J</div><div><b>JurisDesk</b><small>Legal operations</small></div></div>
+<div class="side-label">WORKSPACE</div><nav>
+<a class="{{'active' if request.endpoint=='dashboard' else ''}}" href="{{url_for('dashboard')}}">◫ &nbsp; Overview</a>
+<a class="{{'active' if request.endpoint=='clients' else ''}}" href="{{url_for('clients')}}">♙ &nbsp; Clients</a>
+<a class="{{'active' if request.endpoint=='cases' else ''}}" href="{{url_for('cases')}}">▤ &nbsp; Cases</a>
+<a class="{{'active' if request.endpoint=='lawyers' else ''}}" href="{{url_for('lawyers')}}">⚖ &nbsp; Lawyers</a>
+<a class="{{'active' if request.endpoint=='assignments' else ''}}" href="{{url_for('assignments')}}">↔ &nbsp; Case assignments</a>
+<a class="{{'active' if request.endpoint=='hearings' else ''}}" href="{{url_for('hearings')}}">▦ &nbsp; Hearings</a>
+<a class="{{'active' if request.endpoint=='tasks' else ''}}" href="{{url_for('tasks')}}">✓ &nbsp; Tasks & documents</a>
+<a class="{{'active' if request.endpoint=='billing' else ''}}" href="{{url_for('billing')}}">₹ &nbsp; Billing</a>
+<a class="{{'active' if request.endpoint=='payments' else ''}}" href="{{url_for('payments')}}">⇄ &nbsp; Payments</a>
+<a class="{{'active' if request.endpoint=='reports' else ''}}" href="{{url_for('reports')}}">▥ &nbsp; Reports</a>
+</nav><div class="side-bottom"><i></i><div><b>Demo environment</b><small>SQLite connected</small></div></div></aside>
+<main class="main"><header class="topbar"><div><span class="eyebrow">LEGAL CASE & CLIENT MANAGEMENT</span><h1>{{ heading or "Legal operations overview" }}</h1></div><div class="user"><div class="avatar">AD</div><div><b>Office Admin</b><small>Case management</small></div></div></header>
+{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flashes">{% for cat,msg in messages %}<div class="flash {{cat}}">{{msg}}</div>{% endfor %}</div>{% endif %}{% endwith %}
+{% block content %}{% endblock %}<footer>JurisDesk <span>·</span> Legal Case & Client Management System</footer></main></div></body></html>

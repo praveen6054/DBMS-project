@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% set heading = "Lawyer directory" %}
+
+{% block content %}
+
+<div class="intro">
+    <div>
+        <h2>Lawyers</h2>
+        <p>Manage specialisations, contact details and hourly rates.</p>
+    </div>
+    <span class="pill">{{ rows|length }} lawyers</span>
+</div>
+
+<div class="layout">
+
+    <!-- Add Lawyer Form -->
+    <form class="panel form" method="post">
+        <h3>Add lawyer</h3>
+
+        <label>
+            Name
+            <input name="name" type="text" required>
+        </label>
+
+        <label>
+            Specialisation
+            <input name="specialization" type="text" required>
+        </label>
+
+        <label>
+            Email
+            <input name="email" type="email">
+        </label>
+
+        <label>
+            Hourly rate (₹)
+            <input
+                name="hourly_rate"
+                type="number"
+                min="0"
+                step="0.01"
+                value="2000"
+                required
+            >
+        </label>
+
+        <button class="btn" type="submit">＋ Add lawyer</button>
+    </form>
+
+    <!-- Lawyer Roster -->
+    <div class="panel">
+
+        <div class="panelhead">
+            <div>
+                <h3>Lawyer roster</h3>
+                <p>Current case allocations</p>
+            </div>
+        </div>
+
+        <div class="tablewrap">
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>LAWYER</th>
+                        <th>SPECIALISATION</th>
+                        <th>RATE / HOUR</th>
+                        <th>CASES</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for r in rows %}
+                    <tr>
+                        <td>
+                            <b>{{ r.name }}</b>
+                            <small>{{ r.email }}</small>
+                        </td>
+
+                        <td>{{ r.specialization }}</td>
+
+                        <td>
+                            ₹{{ "{:,.0f}".format(r.hourly_rate|float) }}
+                        </td>
+
+                        <td>{{ r.case_count }}</td>
+                    </tr>
+
+                    {% else %}
+                    <tr>
+                        <td colspan="4">No lawyers registered yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
