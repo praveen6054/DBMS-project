@@ -1,3 +1,10 @@
+# Legal Case & Client Management System
+
+## 🚀 Live Demo
+
+**Live Website:** [Click here to open the Legal Case & Client Management System](https://dbms-project-kmq4.onrender.com)
+
+---
 # JurisDesk — Legal Case & Client Management System
 
 Python Flask + SQLite demo application for the DBMS project brief.
